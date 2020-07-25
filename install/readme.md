@@ -67,3 +67,4 @@ spec:
     image: xxradar/hackon
 EOF
 ```
+If you sping up multiple pods (assuming your nodes are in the same L2 network or node) they will have connectivity accross the newly mounted net1 interface.
