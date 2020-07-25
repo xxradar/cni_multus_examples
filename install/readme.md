@@ -70,3 +70,45 @@ EOF
 If you sping up multiple pods (assuming your nodes are in the same L2 network or node) they will have connectivity accross the newly mounted net1 interface.
 
 ### Network attachment via bridge cni plugin
+```
+cat <<EOF | kubectl create -f -
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: bridge-conf
+spec:
+  config: '{
+    "cniVersion": "0.3.0",
+    "name": "bridge-conf",
+    "type": "bridge",
+    "bridge": "br0",
+    "isGateway": true,
+    "ipam": {
+     "type": "host-local",
+     "subnet": "192.168.99.0/24",
+     "dataDir": "/mnt/cluster-ipam"
+    }
+}'
+EOF
+```
+#### Let's create a sample pod to verify
+```
+cat <<EOF | kubectl create -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hackon4
+  annotations:
+    k8s.v1.cni.cncf.io/networks: bridge-conf
+spec:
+  containers:
+  - name: hackon
+    command: ["/bin/bash", "-c", "trap : TERM INT; sleep infinity & wait"]
+    image: xxradar/hackon
+EOF
+```
+You can verify the interfaces and IP addresses in the pods. <br>
+Also note that on the node the pod is created, a bridge called br0 is created.
+```
+brctl show
+```
