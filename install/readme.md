@@ -112,3 +112,20 @@ Also note that on the node the pod is created, a bridge called br0 is created.
 ```
 brctl show
 ```
+#### Let's create a sample pod a mount multiple interfaces
+```
+cat <<EOF | kubectl create -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hackon8
+  annotations:
+     k8s.v1.cni.cncf.io/networks: bridge-conf, macvlan-conf
+spec:
+  containers:
+  - name: hackon
+    command: ["/bin/bash", "-c", "trap : TERM INT; sleep infinity & wait"]
+    image: xxradar/hackon
+EOF
+```
+
