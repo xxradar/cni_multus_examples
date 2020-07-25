@@ -11,7 +11,7 @@ git clone https://github.com/intel/multus-cni.git && cd multus-cni
 ```
 Multus will be installed as daemonset. Pleqse note that there probably already an installed CNI.
 ```
-cat ./images/multus-daemonset.yml | kubectl apply -f -
+kubectl apply -f ./multus-cni/images/multus-daemonset.yml
 ```
 You can validate the istall 
 ```
