@@ -63,6 +63,7 @@ metadata:
 spec:
   containers:
   - name: hackon
+    command: ["/bin/bash", "-c", "trap : TERM INT; sleep infinity & wait"]
     image: xxradar/hackon
 EOF
 ```
