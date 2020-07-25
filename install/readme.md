@@ -13,3 +13,7 @@ Multus will be installed as daemonset. Pleqse note that there probably already a
 ```
 cat ./images/multus-daemonset.yml | kubectl apply -f -
 ```
+You can validate the istall 
+```
+kubectl get pods --all-namespaces | grep -i multus
+```
