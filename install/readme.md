@@ -19,7 +19,7 @@ kubectl get pods --all-namespaces | grep -i multus
 ### Creating addition CNI configurations
 The idea behind Multus is to mount multiple interfaces in a pod. There for you must have something in place that can connect an interface to a network (ex. bridge or interface) and manage the IP addresses (preferably accross the cluster). This is  configured in a additional CNI configuration.
 
-### Network attachment via macvlan cni plugin
+### 1. Network attachment via macvlan cni plugin
 ```
 cat <<EOF | kubectl create -f -
 apiVersion: "k8s.cni.cncf.io/v1"
@@ -70,7 +70,7 @@ EOF
 If you sping up multiple pods (assuming your nodes are in the same L2 network or node) they will have connectivity accross the newly mounted net1 interface.<br>
 Please also refer to https://medium.com/@xxradar/docker-pentester-series-1-macvlan-be4bca3062f2  for examples related to macvlan.
 
-### Network attachment via bridge cni plugin
+### 2. Network attachment via bridge cni plugin
 ```
 cat <<EOF | kubectl create -f -
 apiVersion: "k8s.cni.cncf.io/v1"
@@ -113,7 +113,7 @@ Also note that on the node the pod is created, a bridge called br0 is created.
 ```
 brctl show
 ```
-#### Let's create a sample pod a mount multiple interfaces
+#### Let's create a sample pod and mount multiple interfaces
 ```
 cat <<EOF | kubectl create -f -
 apiVersion: v1
