@@ -67,7 +67,7 @@ spec:
     image: xxradar/hackon
 EOF
 ```
-If you sping up multiple pods (assuming your nodes are in the same L2 network or node) they will have connectivity accross the newly mounted net1 interface.<b>
+If you sping up multiple pods (assuming your nodes are in the same L2 network or node) they will have connectivity accross the newly mounted net1 interface.<br>
 Please also refer to https://medium.com/@xxradar/docker-pentester-series-1-macvlan-be4bca3062f2  for examples related to macvlan.
 
 ### Network attachment via bridge cni plugin
