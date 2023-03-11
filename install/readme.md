@@ -8,7 +8,7 @@ This is purely based on  https://github.com/intel/multus-cni/blob/master/doc/qui
 ```
 git clone https://github.com/intel/multus-cni.git && cd multus-cni
 ```
-Multus will be installed as daemonset. Pleqse note that there probably already an installed CNI.
+Multus will be installed as daemonset. Pleqae note that there is probably already an installed CNI.
 ```
 kubectl apply -f ./multus-cni/images/multus-daemonset.yml
 ```
